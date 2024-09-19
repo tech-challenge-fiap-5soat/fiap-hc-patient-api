@@ -40,3 +40,6 @@ feign:
       order-api:
         service:
           url: http://localhost:8078/api/v1
+      auth-api:
+        service:
+          url: http://localhost:8078/api/v1
