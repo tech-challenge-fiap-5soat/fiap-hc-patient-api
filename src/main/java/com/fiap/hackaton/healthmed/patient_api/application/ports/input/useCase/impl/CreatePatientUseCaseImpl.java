@@ -2,7 +2,7 @@ package com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.
 
 import com.fiap.hackaton.healthmed.patient_api.application.services.PatientService;
 import com.fiap.hackaton.healthmed.patient_api.domain.model.Patient;
-import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.CreatePatientAuthUseCase;
+import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.CreatePatientAuthCredentialsUseCase;
 import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.CreatePatientUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,17 +14,17 @@ public class CreatePatientUseCaseImpl implements CreatePatientUseCase {
     private final PatientService patientService;
 
     @Autowired
-    private final CreatePatientAuthUseCase createPatientAuthUseCase;
+    private final CreatePatientAuthCredentialsUseCase createPatientAuthUseCase;
 
     public CreatePatientUseCaseImpl(PatientService patientService,
-                                    CreatePatientAuthUseCase createPatientAuthUseCase) {
+                                    CreatePatientAuthCredentialsUseCase createPatientAuthUseCase) {
 
         this.patientService = patientService;
         this.createPatientAuthUseCase = createPatientAuthUseCase;
     }
 
     public Patient createPatient(Patient patient) {
-        Boolean authCreated = createPatientAuthUseCase.execute(patient);
+        Boolean authCreated = createPatientAuthUseCase.createCredentials(patient);
         if (!authCreated) {
             throw new RuntimeException("Error creating Patient auth credentials");
         }
