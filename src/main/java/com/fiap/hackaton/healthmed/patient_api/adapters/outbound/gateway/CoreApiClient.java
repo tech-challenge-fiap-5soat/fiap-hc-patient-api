@@ -39,5 +39,4 @@ public class CoreApiClient implements CoreApiGateway {
                 .build());
 
     }
-
 }

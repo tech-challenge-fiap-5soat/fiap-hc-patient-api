@@ -1,6 +1,5 @@
 package com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.impl;
 
-import com.fiap.hackaton.healthmed.patient_api.application.ports.output.gateway.AuthApiGateway;
 import com.fiap.hackaton.healthmed.patient_api.application.ports.output.gateway.dto.CreatePatientCredentialsDto;
 import com.fiap.hackaton.healthmed.patient_api.application.ports.output.gateway.dto.UserAuthType;
 import com.fiap.hackaton.healthmed.patient_api.application.services.AuthApiService;
