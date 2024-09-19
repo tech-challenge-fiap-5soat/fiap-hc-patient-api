@@ -12,11 +12,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class CreatePatientAuthUseCaseImpl implements CreatePatientAuthCredentialsUseCase {
+
     @Autowired
     private final AuthApiService authApiService;
 
     @Override
     public Boolean createCredentials(Patient patient) {
+        if (!isPatientValid(patient)) {
+            return false;
+        }
+
         CreatePatientCredentialsDto createPatientCredentialsDto = CreatePatientCredentialsDto.
                 builder()
                 .name(patient.getName())
@@ -27,5 +32,13 @@ public class CreatePatientAuthUseCaseImpl implements CreatePatientAuthCredential
                 .build();
 
         return authApiService.createCredentials(createPatientCredentialsDto);
+    }
+
+    private Boolean isPatientValid(Patient patient) {
+        return patient != null
+                && patient.getName() != null
+                && patient.getCpf() != null
+                && patient.getEmail() != null
+                && patient.getPassword() != null;
     }
 }
