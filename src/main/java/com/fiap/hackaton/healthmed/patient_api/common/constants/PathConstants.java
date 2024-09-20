@@ -8,5 +8,5 @@ public class PathConstants {
     public static final String PATIENTS = "/patients";
     public static final String DOCTORS = "/doctors";
     public static final String PATIENTS_SCHEDULE_APPOINTMENT = "/{id}/schedule-appointment";
-    public static final String PATIENTS_LOGIN = "/AUTHORIZATION";
+    public static final String PATIENTS_LOGIN = "/authorization";
 }

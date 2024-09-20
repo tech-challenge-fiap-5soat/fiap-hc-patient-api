@@ -1,5 +1,5 @@
 server:
-  port: 8099
+  port: 8098
   servlet:
     context-path: /api
     encoding:
@@ -42,5 +42,6 @@ feign:
           url: http://localhost:8078/api/v1
       auth-api:
         service:
-          url: https://run.mocky.io/v3/0fc38c00-722a-47ee-aabf-b07f54a7bf46
+          url: http://localhost:8099/api
+          #FALSE https://run.mocky.io/v3/0fc38c00-722a-47ee-aabf-b07f54a7bf46
           #TRUE https://run.mocky.io/v3/b7083ab0-07bb-4d9f-8444-623d88b92a89

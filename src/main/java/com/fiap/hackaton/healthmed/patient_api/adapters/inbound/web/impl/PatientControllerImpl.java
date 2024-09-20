@@ -1,5 +1,6 @@
 package com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.impl;
 
+import com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.dto.LoginRequestDto;
 import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.LoginPatientUseCase;
 import com.fiap.hackaton.healthmed.patient_api.domain.model.Patient;
 import com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.PatientController;
@@ -48,8 +49,8 @@ public class PatientControllerImpl implements PatientController {
     }
 
     @Override
-    public ResponseEntity<String> login(String email, String password) {
-        String authToken = loginPatientUseCase.loginAndGetAuthToken(email, password);
+    public ResponseEntity<String> login(LoginRequestDto request) {
+        String authToken = loginPatientUseCase.loginAndGetAuthToken(request.email(), request.password());
         return ResponseEntity.ok(authToken);
     }
 }

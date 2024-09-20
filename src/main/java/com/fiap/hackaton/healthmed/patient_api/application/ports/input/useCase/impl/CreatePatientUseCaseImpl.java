@@ -17,7 +17,7 @@ public class CreatePatientUseCaseImpl implements CreatePatientUseCase {
     private final CreatePatientAuthCredentialsUseCase createPatientAuthUseCase;
 
     public CreatePatientUseCaseImpl(PatientService patientService,
-                                    CreatePatientAuthCredentialsUseCase createPatientAuthUseCase) {
+                                     CreatePatientAuthCredentialsUseCase createPatientAuthUseCase) {
 
         this.patientService = patientService;
         this.createPatientAuthUseCase = createPatientAuthUseCase;
