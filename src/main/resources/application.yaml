@@ -40,8 +40,9 @@ feign:
       order-api:
         service:
           url: http://localhost:8078/api/v1
+      scheduling-api:
+        service:
+          url: http://localhost:8097/api
       auth-api:
         service:
           url: http://localhost:8099/api
-          #FALSE https://run.mocky.io/v3/0fc38c00-722a-47ee-aabf-b07f54a7bf46
-          #TRUE https://run.mocky.io/v3/b7083ab0-07bb-4d9f-8444-623d88b92a89
