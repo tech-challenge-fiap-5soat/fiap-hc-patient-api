@@ -6,11 +6,8 @@ import com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.dto.PatientC
 import com.fiap.hackaton.healthmed.patient_api.adapters.outbound.dto.CreateSchedulingRequestDto;
 import com.fiap.hackaton.healthmed.patient_api.adapters.outbound.dto.CreatedAppointment;
 import com.fiap.hackaton.healthmed.patient_api.common.constants.PathConstants;
-import com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.dto.AvailableDoctorDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
