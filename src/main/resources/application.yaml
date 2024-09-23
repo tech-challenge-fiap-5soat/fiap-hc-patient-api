@@ -43,7 +43,7 @@ swagger-servers-urls: http://localhost:${server.port}${server.servlet.context-pa
 feign:
   client:
     config:
-      order-api:
+      doctor-api:
         service:
           url: http://localhost:8078/api/v1
       scheduling-api:

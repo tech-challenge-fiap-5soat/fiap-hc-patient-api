@@ -1,7 +1,7 @@
 package com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.impl;
 
 import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.ListDoctorUseCase;
-import com.fiap.hackaton.healthmed.patient_api.application.services.CoreApiService;
+import com.fiap.hackaton.healthmed.patient_api.application.services.DoctorApiService;
 import com.fiap.hackaton.healthmed.patient_api.domain.model.Doctor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ import java.util.List;
 @Service
 public class ListDoctorUseCaseImpl implements ListDoctorUseCase {
     @Autowired
-    private final CoreApiService coreApiService;
+    private final DoctorApiService doctorApiService;
 
     @Override
     public List<Doctor> listDoctors(Boolean includeWithoutSlots, String specialty) {
-        return coreApiService.listDoctors(includeWithoutSlots, specialty);
+        return doctorApiService.listDoctors(includeWithoutSlots, specialty);
     }
 }
