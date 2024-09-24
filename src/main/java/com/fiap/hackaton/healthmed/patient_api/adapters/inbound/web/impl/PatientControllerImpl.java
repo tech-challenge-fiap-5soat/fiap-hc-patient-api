@@ -1,24 +1,24 @@
 package com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.impl;
 
-import com.fiap.hackaton.healthmed.patient_api.adapters.outbound.persistence.mapper.DoctorMapper;
-import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.ListDoctorUseCase;
-import com.fiap.hackaton.healthmed.patient_api.domain.model.Doctor;
+import com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.dto.LoginRequestDto;
+import com.fiap.hackaton.healthmed.patient_api.adapters.outbound.dto.CreateSchedulingRequestDto;
+import com.fiap.hackaton.healthmed.patient_api.adapters.outbound.dto.CreatedAppointment;
+import com.fiap.hackaton.healthmed.patient_api.adapters.outbound.persistence.mapper.SchedulingMapper;
+import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.CreateScheduleAppointmentUseCase;
+import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.LoginPatientUseCase;
+import com.fiap.hackaton.healthmed.patient_api.domain.model.CreatedSchedulingAppointment;
 import com.fiap.hackaton.healthmed.patient_api.domain.model.Patient;
 import com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.PatientController;
-import com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.dto.AvailableDoctorDto;
 import com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.dto.CreatePatientRequestDto;
 import com.fiap.hackaton.healthmed.patient_api.adapters.inbound.web.dto.PatientCreatedDto;
 import com.fiap.hackaton.healthmed.patient_api.adapters.outbound.persistence.mapper.PatientMapper;
 import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.CreatePatientUseCase;
+import com.fiap.hackaton.healthmed.patient_api.domain.model.Scheduling;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.ResponseEntity.status;
 
@@ -29,6 +29,12 @@ public class PatientControllerImpl implements PatientController {
 
     @Autowired
     private final CreatePatientUseCase createPatientUseCase;
+
+    @Autowired
+    private final LoginPatientUseCase loginPatientUseCase;
+
+    @Autowired
+    private final CreateScheduleAppointmentUseCase createScheduleAppointmentUseCase;
 
     @Override
     public ResponseEntity<PatientCreatedDto> create(CreatePatientRequestDto request) {
@@ -46,9 +52,16 @@ public class PatientControllerImpl implements PatientController {
         return status(CREATED).body(createdDto);
     }
 
+    @Override
+    public ResponseEntity<CreatedAppointment> scheduleAppointment(CreateSchedulingRequestDto createRequestDto) {
+        Scheduling appointment = SchedulingMapper.CreateSchedulingRequestDtoToScheduling(createRequestDto);
+        CreatedSchedulingAppointment created = createScheduleAppointmentUseCase.createSchedulingAppointment(appointment);
+        return ResponseEntity.ok(CreatedAppointment.builder().id(created.getId()).build());
+    }
 
     @Override
-    public ResponseEntity<String> scheduleAppointment(String id) {
-        return null;
+    public ResponseEntity<String> login(LoginRequestDto request) {
+        String authToken = loginPatientUseCase.loginAndGetAuthToken(request.email(), request.password());
+        return ResponseEntity.ok(authToken);
     }
 }

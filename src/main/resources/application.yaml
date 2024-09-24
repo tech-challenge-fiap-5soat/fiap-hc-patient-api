@@ -1,5 +1,5 @@
 server:
-  port: 8099
+  port: 8098
   servlet:
     context-path: /api
     encoding:
@@ -24,6 +24,12 @@ spring:
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_y8Kq1GetQ/.well-known/jwks.json
+
 springdoc:
   swagger-ui:
     disable-swagger-default-url: false
@@ -37,6 +43,18 @@ swagger-servers-urls: http://localhost:${server.port}${server.servlet.context-pa
 feign:
   client:
     config:
-      order-api:
+      doctor-api:
         service:
           url: http://localhost:8078/api/v1
+      scheduling-api:
+        service:
+          url: http://localhost:8097/api
+      auth-api:
+        service:
+          url: http://localhost:8099/api
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
