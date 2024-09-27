@@ -1,9 +1,18 @@
 # fiap-hc-patient-api
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tech-challenge-fiap-5soat_fiap-hc-patient-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tech-challenge-fiap-5soat_fiap-hc-patient-api) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tech-challenge-fiap-5soat_fiap-hc-patient-api&metric=coverage)](https://sonarcloud.io/summary/new_code?id=tech-challenge-fiap-5soat_fiap-hc-patient-api)
+ 
+Fiap patient api is a system designed to manage data of patients and make available the doctors schedules. The system allows for user registration, create authorization token and create a schedule appointment on a doctors schedule.  
 
-#### API to manage patient data and create appointment requests with doctors
+This service is responsible for
 
+- Create patient
+- Create patient authentication credentials
+- List doctors
+- Create authorization token with role patient
+
+
+----
 ### Architecture
 
 ![hackathon drawio](https://github.com/user-attachments/assets/4a0aee84-0454-46f7-b77d-5417feb23015)
