@@ -87,3 +87,91 @@ make test
 ```
 
 This command will run all unit tests.
+
+## Endpoints
+
+### 1. Create Patient
+
+**POST** /patients
+
+```json
+{
+  "name": "John Doe",
+  "cpf": "123.456.789-00",
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+**Response**: `201 Created` with the created patient object.
+
+**Response Body**:
+
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "cpf": "123.456.789-00",
+  "email":"john.doe@example.com"
+}
+```
+
+### 2. Create patient appointment
+
+**POST** /{doctorId}/schedules/appointment
+
+```json
+{
+  "doctorId": 1,
+  "patientId": 1,
+  "doctorScheduleId": 1,
+  "date": "2021-10-10T10:00:00"
+}
+```
+
+**Response**: `200 OK` with the id of the created appointment object.
+
+**Response Body**:
+
+```json
+{
+  "id": 1
+}
+```
+
+### 3. Patient login
+
+**POST** /authorization
+
+```json
+{
+  "email": "email@email.com",
+  "password": "password"
+}
+```
+**Response**: `200 OK` with the valid token of patient
+
+**Response Body**:
+
+```
+my-valid-token
+```
+
+### 4. List all doctors
+
+**GET** /doctors
+
+**Response**: `200 OK` with the list of doctors.
+
+**Response Body**:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Doctor name",
+    "cpf": "CPF",
+    "crm": "CRM",
+    "email": "doctor@email.com"
+  }
+]
+```
