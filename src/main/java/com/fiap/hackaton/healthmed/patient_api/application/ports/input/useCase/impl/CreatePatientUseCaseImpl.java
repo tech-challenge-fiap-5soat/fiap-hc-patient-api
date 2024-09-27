@@ -1,5 +1,6 @@
 package com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.impl;
 
+import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.exceptions.BusinessException;
 import com.fiap.hackaton.healthmed.patient_api.application.services.PatientService;
 import com.fiap.hackaton.healthmed.patient_api.domain.model.Patient;
 import com.fiap.hackaton.healthmed.patient_api.application.ports.input.useCase.CreatePatientAuthCredentialsUseCase;
@@ -26,7 +27,7 @@ public class CreatePatientUseCaseImpl implements CreatePatientUseCase {
     public Patient createPatient(Patient patient) {
         Boolean authCreated = createPatientAuthUseCase.createCredentials(patient);
         if (!authCreated) {
-            throw new RuntimeException("Error creating Patient auth credentials");
+            throw new BusinessException("Error creating Patient auth credentials");
         }
         return patientService.CreatePatient(patient);
     }

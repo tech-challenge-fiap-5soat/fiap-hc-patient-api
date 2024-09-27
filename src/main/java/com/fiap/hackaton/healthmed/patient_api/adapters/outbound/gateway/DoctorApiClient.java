@@ -19,6 +19,6 @@ import java.util.UUID;
 @FeignClient(value = "doctor-api", url = "${feign.client.config.doctor-api.service.url}")
 public interface DoctorApiClient extends DoctorApiGateway {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/doctors")
+    @RequestMapping(method = RequestMethod.GET, value = "/doctor")
     public List<AvailableDoctorsDto> listDoctors();
 }
