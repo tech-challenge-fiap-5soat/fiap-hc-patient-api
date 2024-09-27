@@ -4,11 +4,13 @@ server:
     context-path: /api
     encoding:
       force: true
+  error:
+    include-stacktrace: ON_PARAM
 spring:
   application:
     name: patients-api
   datasource:
-    url: jdbc:postgresql://172.21.0.2:5432/patients
+    url: jdbc:postgresql://172.21.0.3:5432/patients
     username: postgres
     password: password
     driver-class-name: org.postgresql.Driver
@@ -45,7 +47,7 @@ feign:
     config:
       doctor-api:
         service:
-          url: http://localhost:8078/api/v1
+          url: http://localhost:8096/api/v1
       scheduling-api:
         service:
           url: http://localhost:8097/api

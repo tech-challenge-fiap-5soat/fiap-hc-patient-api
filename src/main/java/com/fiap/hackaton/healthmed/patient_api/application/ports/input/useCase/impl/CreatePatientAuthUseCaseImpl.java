@@ -36,9 +36,9 @@ public class CreatePatientAuthUseCaseImpl implements CreatePatientAuthCredential
 
     private Boolean isPatientValid(Patient patient) {
         return patient != null
-                && patient.getName() != null
-                && patient.getCpf() != null
-                && patient.getEmail() != null
-                && patient.getPassword() != null;
+                && patient.getName() != null && !patient.getName().isEmpty()
+                && patient.getCpf() != null && !patient.getCpf().isEmpty()
+                && patient.getEmail() != null && !patient.getEmail().isEmpty()
+                && patient.getPassword() != null && !patient.getPassword().isEmpty();
     }
 }
